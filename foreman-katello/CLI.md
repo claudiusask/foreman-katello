@@ -1,5 +1,6 @@
 ### Commands to enter while setup of Foreman-katello. 
 1. First we create content-credentials; with content-credentials we import the GPG key to verify the downloadable repos. Find the URL for the respected software developer and OS. e.g: CentOS, Ubuntu etc..
+
 		```
 		hammer content-credentials
 		```
