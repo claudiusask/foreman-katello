@@ -8,9 +8,9 @@
 		hammer content-credentials create --key 'downloaded-key in /import' -name 'name-to-give-to-key' -content-type 'gpg_key'		
 
 2. Now create product; give it a name and details.
-3. 		
+
 4. 		hammer product create --name 'example-name:CentOS8' --description 'description to give'
-5. 		
+
 6. With product in place create repository from this product. Find the repo url on the respected OS.
 
 		hammer repository create --product 'example-name:CentOS8' --content-type yum 
