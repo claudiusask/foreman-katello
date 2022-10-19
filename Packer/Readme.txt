@@ -1,0 +1,2 @@
+- Use the followinf files and edit it as we need it.
+- Using packer but this is RHEL 8 developer license vm, we need to login to the vm and subscribe it to the rhel developer subscription for updates.
