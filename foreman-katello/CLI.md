@@ -13,7 +13,9 @@
 
 6. With product in place create repository from this product. Find the repo url on the respected OS.
 
-		hammer repository create --product 'example-name:CentOS8' --content-type yum 
+		hammer repository create --product 'example-name:CentOS8' --name 'examplename' --label 'examplename' --content-type yum \
+		--download policy 'on_demand' --gpg-key-id '#get the number from content-credentials list' \
+		--url 'the-repo-url-of-the-package' --mirror-on-sync 'no' 
 		
 8. With all these things in-place we can sync the repository with hammer in CLI or with web-interface, use tmux or screen with CLI.
 9. Now we move to content-View, which is snapshot of one or more repositories and/or puppet modules. 
