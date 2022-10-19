@@ -4,6 +4,7 @@
 	a. We create a new directory in /etc/pki/rpm-gpg/import 
 
 		wget https://**--find-the-GPG-key-online.com--**
+		
 		hammer content-credentials create --key 'downloaded-key in /import' -name 'name-to-give-to-key' -content-type 'gpg_key'
 	
 	b. list of gpg_key for my foreman-katello lab
