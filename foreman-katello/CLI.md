@@ -5,7 +5,7 @@
 
 		wget https://**--find-the-GPG-key-online.com--**
 		
-		hammer content-credentials create --key 'downloaded-key in /import' \
+		hammer content-credentials create --path 'downloaded-key in /import' \
 		--name 'name-to-give-to-key' --content-type 'gpg_key'		
 
 2. Now create product; give it a name and details.
