@@ -21,7 +21,7 @@
 		
 8. With all these things in-place we can sync the repository with hammer in CLI or with web-interface, use tmux or screen with CLI.
 9. for Remi php 8.0 use this repo url https://rpms.remirepo.net/enterprise/remi-release-8.rpm
-10. Remember that graylog only works with Elasticsearch 7.11 otherwise use opensearch. Use the following repo url for elasticsearch 7.11 https://artifacts.elastic.co/packages/7.x/yum/7.11.0/enterprise-search-7.11.0.rpm
+10. Remember that graylog only works with Elasticsearch 7.11 otherwise use opensearch. Use the following repo url for elasticsearch 7.11 https://artifacts.elastic.co/packages/7.x/yum
 11. Now we move to content-View, which is snapshot of one or more repositories and/or puppet modules. 
 12. We create the content-view and publish it. Add the repositories with ID and publish it.
 13. Now we create and activation-key which is used to register the host or server. Create the activation-key and then add-subscription to this activation-key. You can find the subscription number with command #hammer subscription list.  
