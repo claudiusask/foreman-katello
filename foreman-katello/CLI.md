@@ -46,7 +46,7 @@
 
 		hammer activation-key create --name "new_key_name" --description "description for user information" --lifecycle-environment "new_name_LFC" --content-view-id #
 
-16. The subscription is an entitlement for receiving content and service from the respected software Devs. In this step we add the subscription id's to the Activation keys. To find the subscription-id we do: <b>hammer subscription list</b>
+16. The subscription is an entitlement for receiving content and service from the venders. In this step we add the subscription id's to the Activation keys. To find the subscription-id we do: <b>hammer subscription list</b>
 
 		for i in $(seq 1 3); do hammer activation-key add-subscription --name "new_key_name" --quantity 1 --subscription-id "$i"; done
 	
