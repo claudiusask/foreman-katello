@@ -19,9 +19,13 @@
 		--download policy 'on_demand' --gpg-key-id '#get the number from content-credentials list' \
 		--url 'the-repo-url-of-the-package' --mirror-on-sync 'no' 
 		
-8. With all these things in-place we can sync the repository with hammer in CLI or with web-interface, use tmux or screen with CLI.
-9. for Remi php 8.0 use this repo url https://rpms.remirepo.net/enterprise/remi-release-8.rpm
-10. Remember that graylog only works with Elasticsearch 7.11 otherwise use opensearch. Use the following repo url for elasticsearch 7.11 https://artifacts.elastic.co/packages/7.x/yum & for graylog use https://packages.graylog2.org/repo/el/stable/4.0/x86_64
-11. Now we move to content-View, which is snapshot of one or more repositories and/or puppet modules. 
-12. We create the content-view and publish it. Add the repositories with ID and publish it.
-13. Now we create and activation-key which is used to register the host or server. Create the activation-key and then add-subscription to this activation-key. You can find the subscription number with command #hammer subscription list.  
+8. With all these things in-place we can sync the repository with hammer in CLI or with web-interface, use tmux or screen with CLI. for the below automated script we can use the for loop in bash cli. To find the number of items to loop here do:
+		hammer repository list
+
+		for i in $(seq 1 15); do hammer repository synchronize --product "example-name:CentOS8" --id "$i"; done
+
+10. for Remi php 8.0 use this repo url https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+11. Remember that graylog only works with Elasticsearch 7.11 otherwise use opensearch. Use the following repo url for elasticsearch 7.11 https://artifacts.elastic.co/packages/7.x/yum & for graylog use https://packages.graylog2.org/repo/el/stable/4.0/x86_64
+12. Now we move to content-View, which is snapshot of one or more repositories and/or puppet modules. 
+13. We create the content-view and publish it. Add the repositories with ID and publish it.
+14. Now we create and activation-key which is used to register the host or server. Create the activation-key and then add-subscription to this activation-key. You can find the subscription number with command #hammer subscription list.  
