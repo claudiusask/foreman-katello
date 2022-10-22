@@ -44,9 +44,9 @@
 				
 15. Now we create and activation-key which is used to register the host or server. Create the activation-key and then add-subscription to this activation-key. You can find the subscription number with command #hammer subscription list. To find the content-view-id run; <b>hammer content-view version list</b>
 
-	hammer activation-key create --name "new_key_name" --description "description for user information" --lifecycle-environment "new_name_LFC" --content-view-id #
+		hammer activation-key create --name "new_key_name" --description "description for user information" --lifecycle-environment "new_name_LFC" --content-view-id #
 
 16. The subscription is an entitlement for receiving content and service from the respected software Devs. In this step we add the subscription id's to the Activation keys. To find the subscription-id we do: <b>hammer subscription list</b>
 
-	for i in $(seq 1 3); do hammer activation-key add-subscription --name "new_key_name" --quantity 1 --subscription-id "$i"; done
+		for i in $(seq 1 3); do hammer activation-key add-subscription --name "new_key_name" --quantity 1 --subscription-id "$i"; done
 	
