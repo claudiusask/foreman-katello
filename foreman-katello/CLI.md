@@ -19,7 +19,7 @@
 		--download policy 'on_demand' --gpg-key-id '#get the number from content-credentials list' \
 		--url 'the-repo-url-of-the-package' --mirror-on-sync 'no' 
 		
-8. With all these things in-place we can sync the repository with hammer in CLI or with web-interface, use tmux or screen with CLI. for the below automated script we can use the for loop in bash cli. To find the number of items to loop here do:
+8. With all these things in-place we can sync the repository with hammer in CLI or with web-interface, use tmux or screen with CLI. for the below automated script we can use the for loop in bash cli. To find the number of items to loop in the seq we can do:- 
 		<b>hammer repository list</b>
 
 		for i in $(seq 1 15); do hammer repository synchronize --product "example-name:CentOS8" --id "$i"; done
