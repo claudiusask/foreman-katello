@@ -19,13 +19,18 @@
 		--download policy 'on_demand' --gpg-key-id '#get the number from content-credentials list' \
 		--url 'the-repo-url-of-the-package' --mirror-on-sync 'no' 
 		
-8. With all these things in-place we can sync the repository with hammer in CLI or with web-interface, use tmux or screen with CLI. for the below automated script we can use the for loop in bash cli. To find the number of items to loop in the seq we can do:- 
+8. With all these things in-place we can sync the repository with hammer in CLI or with web-interface, use tmux or screen with CLI. If any repo fails to sync please find the solutions below. For the below automated script we can use the for loop in bash cli. To find the number of items to loop in the seq we can do:- 
 		<b>hammer repository list</b>
 
 		for i in $(seq 1 15); do hammer repository synchronize --product "example-name:CentOS8" --id "$i"; done
 
-10. for Remi php 8.0 use this repo url https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+10. For Remi php 8.0 use this repo url https://rpms.remirepo.net/enterprise/remi-release-8.rpm
 11. Remember that graylog only works with Elasticsearch 7.11 otherwise use opensearch. Use the following repo url for elasticsearch 7.11 https://artifacts.elastic.co/packages/7.x/yum & for graylog use https://packages.graylog2.org/repo/el/stable/4.0/x86_64
-12. Now we move to content-View, which is snapshot of one or more repositories and/or puppet modules. 
-13. We create the content-view and publish it. Add the repositories with ID and publish it.
+12. Now we move to content-View, which is snapshot of one or more repositories and/or puppet modules.
+13. We create the content-view add the repositories with ID and publish it. If we already have the content-view and we just want to add some more repositories we don't have to re-create it but we just add the repos and publish a new version.
+
+		hammer content-view create --name "new_name_Content_View" --description "give it a description"
+		
+		for i in $(seq 1 27); do hammer content-view add-repository --name "new_name_Content_View" --product "name_of_repos" --repository-id "$i"; done
+		
 14. Now we create and activation-key which is used to register the host or server. Create the activation-key and then add-subscription to this activation-key. You can find the subscription number with command #hammer subscription list.  
