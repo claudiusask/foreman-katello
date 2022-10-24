@@ -19,7 +19,7 @@ These are the instructions to build the basic Foreman Katello server from scratc
 
             dnf clean all
           
- Install the foreman-release.rpm package:
+      Install the foreman-release.rpm package:
  
             dnf localinstall https://yum.theforeman.org/releases/3.4/el8/x86_64/foreman-release.rpm
             
