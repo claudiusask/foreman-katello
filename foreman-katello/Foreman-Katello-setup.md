@@ -10,5 +10,9 @@ These are the instructions to build the basic Foreman Katello server from scratc
             --add-port="8140/tcp" \
             --add-port="8443/tcp" \
             --add-port="8000/tcp" --add-port="9090/tcp"
+            
+            firewall-cmd --runtime-to-permanent
+            
+            firewall-cmd --reload
      
 3. Now check
