@@ -23,4 +23,17 @@ These are the instructions to build the basic Foreman Katello server from scratc
  
             dnf localinstall https://yum.theforeman.org/releases/3.4/el8/x86_64/foreman-release.rpm
             
+      Install the katello-repos-latest.rpm package
+
+            dnf localinstall https://yum.theforeman.org/katello/4.6/katello/el8/x86_64/katello-repos-latest.rpm
+            
+      Install the puppet7-release-el-8.noarch.rpm package:
+
+            dnf localinstall https://yum.puppet.com/puppet7-release-el-8.noarch.rpm
+      Enable powertools repository:
+
+            dnf config-manager --set-enabled powertools
+      Enable the Katello and Pulpcore modules:
+
+            dnf module enable katello:el8 pulpcore:el8
       
