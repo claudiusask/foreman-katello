@@ -15,4 +15,10 @@ These are the instructions to build the basic Foreman Katello server from scratc
             
             firewall-cmd --reload
      
-3. Now check
+3. Configuring Repositories
+            dnf clean all
+          
+ Install the foreman-release.rpm package:
+            dnf localinstall https://yum.theforeman.org/releases/3.4/el8/x86_64/foreman-release.rpm
+            
+      
