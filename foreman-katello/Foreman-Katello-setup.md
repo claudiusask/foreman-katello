@@ -38,6 +38,7 @@ These are the instructions to build the basic Foreman Katello server from scratc
             dnf module enable katello:el8 pulpcore:el8
       
 4. Installing Foreman server Packages:
+
       Update all packages:
 
             dnf update
