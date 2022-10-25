@@ -45,3 +45,17 @@ These are the instructions to build the basic Foreman Katello server from scratc
       Install foreman-installer-katello
 
             dnf install foreman-installer-katello
+            
+5. Foreman-installer with katello:
+
+      We can use the DHCP and DNS available in foreman-proxy but we have stand alone severs just for DNS and DHCP so we switch off these services in Foreman-katello
+            
+            foreman-installer --scenario katello \
+            --foreman-initial-organization "Axcme" \
+            --foreman-initial-location "London" \
+            --foreman-initial-admin-username admin \
+            --foreman-initial-admin-password Goodfish509 \
+            --foreman-proxy-dns-managed false \
+            --foreman-proxy-dhcp-managed false \
+            --foreman-proxy-tftp true \
+            --foreman-proxy-tftp-servername $(hostname)
