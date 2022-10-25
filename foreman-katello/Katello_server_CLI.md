@@ -88,7 +88,7 @@
 
 		hammer activation-key create --name "new_key_name" --description "description for user information" --lifecycle-environment "new_name_LFC" --content-view-id #
 
-18. The subscription is an entitlement for receiving content and service from the venders. In this step we add the subscription id's to the Activation keys. To find the subscription-id we do: <b>hammer subscription list</b>
+18. The subscription is an entitlement for receiving content and service from the venders. In this step we add the subscription id's to the Activation keys. If the Simple content Access is enabled we can't add subscriptions to Activation key. To disable SCA we can do <b>hammer simple-content-access disable</b>. To find the subscription-id we do: <b>hammer subscription list</b>
 
 		for i in $(seq 1 3); do hammer activation-key add-subscription --name "new_key_name" --quantity 1 --subscription-id "$i"; done
 	
