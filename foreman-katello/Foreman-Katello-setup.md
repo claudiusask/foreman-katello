@@ -59,3 +59,11 @@ These are the instructions to build the basic Foreman Katello server from scratc
             --foreman-proxy-dhcp-managed false \
             --foreman-proxy-tftp true \
             --foreman-proxy-tftp-servername $(hostname)
+6. Setup hammer defaults organization and location so we don't have to specify it every time.
+            
+            hammer defaults add --param-name organization --param-value "my-ORG"
+            hammer defaults add --param-name location --param-value "my-LOCATION"
+      
+      We can confirm it with:
+            
+            hammer defaults list
