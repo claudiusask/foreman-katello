@@ -29,16 +29,26 @@
 12. Remember that graylog only works with Elasticsearch 7.11 otherwise use opensearch. Use the following repo url for elasticsearch 7.11 https://artifacts.elastic.co/packages/7.x/yum & for graylog use https://packages.graylog2.org/repo/el/stable/4.0/x86_64
 13. Some of the url's I used in my lab:
 	
-		elasticsearch_7_x86_64 	https://artifacts.elastic.co/packages/7.x/yum
-		EPEL8                  	https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64
-		graylog_40_x86_64      	https://packages.graylog2.org/repo/el/stable/4.0/x86_64
-		lynis                  	https://packages.cisofy.com/community/lynis/rpm/
-		mongodb_60_x86_64      	http://repo.mongodb.org/yum/redhat/8Server/mongodb-org/6.0/x86_64/
-		mysql_80_x86_64        	https://repo.mysql.com/yum/mysql-8.0-community/el/8/x86_64/
-		Puppet_x86_64          	https://yum.puppetlabs.com/puppet7/el/8/x86_64/
-		Remi_php_80_x86_64     	https://mirrors.ukfast.co.uk/sites/remi/enterprise/8/php80/x86_64/
-		slaanesh_bacula_x86_64 	https://copr-be.cloud.fedoraproject.org/results/slaanesh/Bacula/epel-8-x86_64/
-		Zabbix_60_x86_64       	https://repo.zabbix.com/zabbix/6.0/rhel/8/x86_64/
+	elasticsearch_7_x86_64 	
+		https://artifacts.elastic.co/packages/7.x/yum
+	EPEL8                  	
+		https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64
+	graylog_40_x86_64      	
+		https://packages.graylog2.org/repo/el/stable/4.0/x86_64
+	lynis                  	
+		https://packages.cisofy.com/community/lynis/rpm/
+	mongodb_60_x86_64      	
+		http://repo.mongodb.org/yum/redhat/8Server/mongodb-org/6.0/x86_64/
+	mysql_80_x86_64        	
+		https://repo.mysql.com/yum/mysql-8.0-community/el/8/x86_64/
+	Puppet_x86_64          	
+		https://yum.puppetlabs.com/puppet7/el/8/x86_64/
+	Remi_php_80_x86_64     	
+		https://mirrors.ukfast.co.uk/sites/remi/enterprise/8/php80/x86_64/
+	slaanesh_bacula_x86_64 	
+		https://copr-be.cloud.fedoraproject.org/results/slaanesh/Bacula/epel-8-x86_64/
+	Zabbix_60_x86_64       	
+		https://repo.zabbix.com/zabbix/6.0/rhel/8/x86_64/
 		
 14. Now we move to content-View, which is snapshot of one or more repositories and/or puppet modules.
 15. We create the content-view, add the repositories with ID and publish it. If we already have the content-view and we just want to add some more repositories we don't have to re-create it but we just add the repos and publish a new version.
