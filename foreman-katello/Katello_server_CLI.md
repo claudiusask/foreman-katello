@@ -27,8 +27,21 @@
 10. Sometimes it's difficult to find the repos URL. What we can do is find Manual installation in the documentation of the repository or Software. Look for something like <b>"create a file named <i>/etc/yum.repos.d/graylog.repo</i>"</b> and extract the baseurl.
 11. For Remi php 8.0 use this repo url https://rpms.remirepo.net/enterprise/remi-release-8.rpm
 12. Remember that graylog only works with Elasticsearch 7.11 otherwise use opensearch. Use the following repo url for elasticsearch 7.11 https://artifacts.elastic.co/packages/7.x/yum & for graylog use https://packages.graylog2.org/repo/el/stable/4.0/x86_64
-13. Now we move to content-View, which is snapshot of one or more repositories and/or puppet modules.
-14. We create the content-view, add the repositories with ID and publish it. If we already have the content-view and we just want to add some more repositories we don't have to re-create it but we just add the repos and publish a new version.
+13. Some of the url's I used in my lab:
+	
+		elasticsearch_7_x86_64 	https://artifacts.elastic.co/packages/7.x/yum
+		EPEL8                  	https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64
+		graylog_40_x86_64      	https://packages.graylog2.org/repo/el/stable/4.0/x86_64
+		lynis                  	https://packages.cisofy.com/community/lynis/rpm/
+		mongodb_60_x86_64      	http://repo.mongodb.org/yum/redhat/8Server/mongodb-org/6.0/x86_64/
+		mysql_80_x86_64        	https://repo.mysql.com/yum/mysql-8.0-community/el/8/x86_64/
+		Puppet_x86_64          	https://yum.puppetlabs.com/puppet7/el/8/x86_64/
+		Remi_php_80_x86_64     	https://mirrors.ukfast.co.uk/sites/remi/enterprise/8/php80/x86_64/
+		slaanesh_bacula_x86_64 	https://copr-be.cloud.fedoraproject.org/results/slaanesh/Bacula/epel-8-x86_64/
+		Zabbix_60_x86_64       	https://repo.zabbix.com/zabbix/6.0/rhel/8/x86_64/
+		
+14. Now we move to content-View, which is snapshot of one or more repositories and/or puppet modules.
+15. We create the content-view, add the repositories with ID and publish it. If we already have the content-view and we just want to add some more repositories we don't have to re-create it but we just add the repos and publish a new version.
 
 		hammer content-view create --name "new_name_Content_View" --description "give it a description"
 		
@@ -36,17 +49,17 @@
 		
 		hammer content-view publish --name "new_name_Content-View" --description "Publishing vx.x"
 		
-14. Create a new Lifecycle. A lifecycle environment is like a container for content view versions which are used by content hosts. We can have different “containers” for different lifecycle environments (eg. Ddevelopment, Testing, Production).
+16. Create a new Lifecycle. A lifecycle environment is like a container for content view versions which are used by content hosts. We can have different “containers” for different lifecycle environments (eg. Ddevelopment, Testing, Production).
 	
 		hammer lifecycle-environment create --name "new_name_LFC" --label "same_like_name_or_bit_different" --prior "Library" or "Dev" or "Test" or "Prod"
 		
 		hammer content-view version promote --content-view "new_name_Content-View" --version "2.0" --to-lifecycle-environment "new_name_LFC"
 				
-15. Now we create and activation-key which is used to register the host or server. Create the activation-key and then add-subscription to this activation-key. You can find the subscription number with command #hammer subscription list. To find the content-view-id run; <b>hammer content-view version list</b>
+17. Now we create and activation-key which is used to register the host or server. Create the activation-key and then add-subscription to this activation-key. You can find the subscription number with command #hammer subscription list. To find the content-view-id run; <b>hammer content-view version list</b>
 
 		hammer activation-key create --name "new_key_name" --description "description for user information" --lifecycle-environment "new_name_LFC" --content-view-id #
 
-16. The subscription is an entitlement for receiving content and service from the venders. In this step we add the subscription id's to the Activation keys. To find the subscription-id we do: <b>hammer subscription list</b>
+18. The subscription is an entitlement for receiving content and service from the venders. In this step we add the subscription id's to the Activation keys. To find the subscription-id we do: <b>hammer subscription list</b>
 
 		for i in $(seq 1 3); do hammer activation-key add-subscription --name "new_key_name" --quantity 1 --subscription-id "$i"; done
 	
