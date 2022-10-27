@@ -16,3 +16,21 @@
             --ipam "None" \
             --domain-ids "1" \
             --tftp-id "1"
+
+4. Now we need to place the installation media some where our new provisioned VM's can access. We can do it through internet but to save the bandwidth we can create a location inside our forman-katello server or we can spin up a separate dedicated server for this which should be done in PROD environment.
+
+            Install vsftpd; WHY: so we have server our installation media over the local network:
+                        
+                        dnf install vsftpd
+                        systemctl enable vsftpd
+                        firewall-cmd --permanent --add-service=ftp
+                        firewall-cmd --reload
+                        
+            Edit /etc/vsftpd/vsftpd.conf and update the following parameters:
+            
+                        anonymous_enable=YES
+                        write_enable=NO
+                        
+            Now restart OR start the vsftpd
+                        
+                        systemctl start vsftpd   OR    systemctl restart vsftpd
