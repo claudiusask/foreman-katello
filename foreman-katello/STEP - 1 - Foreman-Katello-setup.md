@@ -48,7 +48,7 @@ These are the instructions to build the basic Foreman Katello server from scratc
             
 5. Foreman-installer with katello:
 
-      We can use the DHCP and DNS available in foreman-proxy but we have stand alone severs just for DNS and DHCP so we switch off these services in Foreman-katello
+      We can use the DHCP and DNS available in foreman-proxy but we have stand alone severs just for DNS and DHCP so we switch off these services in Foreman-katello. Also in the last we enable vmware provider.
             
             foreman-installer --scenario katello \
             --foreman-initial-organization "Axcme" \
@@ -59,6 +59,8 @@ These are the instructions to build the basic Foreman Katello server from scratc
             --foreman-proxy-dhcp-managed false \
             --foreman-proxy-tftp true \
             --foreman-proxy-tftp-servername $(hostname)
+            --enable-foreman-compute-vmware
+            
 6. Setup hammer defaults organization and location so we don't have to specify it every time.
             
             hammer defaults add --param-name organization --param-value "my-ORG"
@@ -67,3 +69,4 @@ These are the instructions to build the basic Foreman Katello server from scratc
       We can confirm it with:
             
             hammer defaults list
+ 
