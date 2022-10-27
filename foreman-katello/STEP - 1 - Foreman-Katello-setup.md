@@ -58,8 +58,13 @@ These are the instructions to build the basic Foreman Katello server from scratc
             --foreman-proxy-dns-managed false \
             --foreman-proxy-dhcp-managed false \
             --foreman-proxy-tftp true \
-            --foreman-proxy-tftp-servername $(hostname)
-            --enable-foreman-compute-vmware
+            --foreman-proxy-tftp-servername $(hostname) \
+            --enable-foreman-compute-vmware \
+            # add the below when issues are sorted out
+            --enable-foreman-plugin-virt-who-configure \
+            --enable-foreman-cli-virt-who-configure \
+            --enable-foreman-plugin-snapshot-management \
+            --enable-foreman-plugin-wreckingball \
             
 6. Setup hammer defaults organization and location so we don't have to specify it every time.
             
