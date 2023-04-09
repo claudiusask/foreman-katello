@@ -54,7 +54,7 @@ These are the instructions to build the basic Foreman Katello server from scratc
             --foreman-initial-organization "Axcme" \
             --foreman-initial-location "London" \
             --foreman-initial-admin-username admin \
-            --foreman-initial-admin-password Goodfish509 \
+            --foreman-initial-admin-password Super-Safe-Password \
             --foreman-proxy-dns-managed false \
             --foreman-proxy-dhcp-managed false \
             --foreman-proxy-tftp true \
