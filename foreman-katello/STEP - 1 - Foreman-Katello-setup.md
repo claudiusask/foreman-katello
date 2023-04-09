@@ -64,7 +64,7 @@ These are the instructions to build the basic Foreman Katello server from scratc
             --enable-foreman-plugin-virt-who-configure \
             --enable-foreman-cli-virt-who-configure \
             --enable-foreman-plugin-snapshot-management \
-            --enable-foreman-plugin-wreckingball \
+            --enable-foreman-plugin-wreckingball
             
 6. Setup hammer defaults organization and location so we don't have to specify it every time.
             
