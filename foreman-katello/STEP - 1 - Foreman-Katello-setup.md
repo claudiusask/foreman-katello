@@ -58,9 +58,9 @@ These are the instructions to build the basic Foreman Katello server from scratc
             --foreman-proxy-dns-managed false \
             --foreman-proxy-dhcp-managed false \
             --foreman-proxy-tftp true \
-            --foreman-proxy-tftp-servername $(hostname) \
+            --foreman-proxy-tftp-servername $(hostname)
+            # add the below when issues are sorted out -- It was failed so i had to run the above, when it successfully finishes then run the foreman-installer with the below
             --enable-foreman-compute-vmware \
-            # add the below when issues are sorted out
             --enable-foreman-plugin-virt-who-configure \
             --enable-foreman-cli-virt-who-configure \
             --enable-foreman-plugin-snapshot-management \
