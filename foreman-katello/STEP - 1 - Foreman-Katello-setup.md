@@ -64,7 +64,9 @@ These are the instructions to build the basic Foreman Katello server from scratc
             --enable-foreman-plugin-virt-who-configure \
             --enable-foreman-cli-virt-who-configure \
             --enable-foreman-plugin-snapshot-management \
+            
             --enable-foreman-plugin-wreckingball
+            # on foreman 3.5 / Katello 4.7, wreckingball is giving issues. We can install it with dnf install rubygem-foreman_wreckingball. Read the plugin pages.
             
 6. Setup hammer defaults organization and location so we don't have to specify it every time.
             
