@@ -1,31 +1,32 @@
 ### Commands to enter while setup of Foreman-katello. 
-```
-block of code
-```
+
 1. First we create content-credentials; with content-credentials we import the GPG key to verify the downloadable repos. Find the URL for the respected software developer and OS. e.g: CentOS, Ubuntu etc..
 	
 	a. We create a new directory in /etc/pki/rpm-gpg/import 
-
-		wget https://**--find-the-GPG-key-online.com--**
+```
+wget https://**--find-the-GPG-key-online.com--**
 		
-		hammer content-credentials create --path 'downloaded-key in /import' \
-		--name 'name-to-give-to-key' --content-type 'gpg_key'		
-
+hammer content-credentials create --path 'downloaded-key in /import' \
+--name 'name-to-give-to-key' --content-type 'gpg_key'		
+```
 2. Now create product; give it a name and details.
 
-3. 		hammer product create --name 'example-name:CentOS8' --description 'description to give'
+3. ```hammer product create --name 'example-name:CentOS8' --description 'description to give'```
 
 4. With product in place create repository from this product. Find the repo url on the respected OS.
 
-		hammer repository create --product 'example-name:CentOS8' \
-		--name 'examplename' --label 'examplename' --content-type yum \
-		--download policy 'on_demand' --gpg-key-id '#get the number from content-credentials list' \
-		--url 'the-repo-url-of-the-package' --mirror-on-sync 'no' 
-		
+hammer repository create --product 'example-name:CentOS8' \
+```
+--name 'examplename' --label 'examplename' --content-type yum \
+--download policy 'on_demand' --gpg-key-id '#get the number from content-credentials list' \
+--url 'the-repo-url-of-the-package' --mirror-on-sync 'no' 
+```
+
 5. With all these things in-place we can sync the repository with hammer in CLI or with web-interface, use tmux or screen with CLI. If any repo fails to sync please find the solutions below. For the below automated script we can use the for loop in bash cli. To find the number of items to loop in the seq we can do:- 
 		<b>hammer repository list</b>
-
-		for i in $(seq 1 15); do hammer repository synchronize --product "example-name:CentOS8" --id "$i"; done
+```
+for i in $(seq 1 15); do hammer repository synchronize --product "example-name:CentOS8" --id "$i"; done
+```
 
 6. Sometimes it's difficult to find the repos URL. What we can do is find Manual installation in the documentation of the repository or Software. Look for something like <b>"create a file named <i>/etc/yum.repos.d/graylog.repo</i>"</b> and extract the baseurl.
 7. For Remi php 8.0 use this repo url https://rpms.remirepo.net/enterprise/remi-release-8.rpm !! Better use URL in point 9
@@ -34,11 +35,12 @@ block of code
 	
 	elasticsearch_7_x86_64 	
 	
-		https://artifacts.elastic.co/packages/7.x/yum
+``` https://artifacts.elastic.co/packages/7.x/yum ```
+
 	
 	EPEL8                  	
 	
-		https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64
+```https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64```
 	
 	graylog_40_x86_64      	
 	
