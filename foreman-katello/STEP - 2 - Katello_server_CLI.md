@@ -25,7 +25,7 @@
 		for i in $(seq 1 15); do hammer repository synchronize --product "example-name:CentOS8" --id "$i"; done
 
 10. Sometimes it's difficult to find the repos URL. What we can do is find Manual installation in the documentation of the repository or Software. Look for something like <b>"create a file named <i>/etc/yum.repos.d/graylog.repo</i>"</b> and extract the baseurl.
-11. For Remi php 8.0 use this repo url https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+11. For Remi php 8.0 use this repo url https://rpms.remirepo.net/enterprise/remi-release-8.rpm !! Better use URL in point 13
 12. Remember that graylog only works with Elasticsearch 7.11 otherwise use opensearch. Use the following repo url for elasticsearch 7.11 https://artifacts.elastic.co/packages/7.x/yum & for graylog use https://packages.graylog2.org/repo/el/stable/4.0/x86_64
 13. Some of the url's I used in my lab:
 	
