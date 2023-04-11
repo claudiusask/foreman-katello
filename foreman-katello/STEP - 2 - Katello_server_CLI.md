@@ -36,14 +36,12 @@ for i in $(seq 1 15); do hammer repository synchronize --product "example-name:C
 8. Remember that graylog only works with Elasticsearch 7.11 otherwise use opensearch. Use the following repo url for elasticsearch 7.11 https://artifacts.elastic.co/packages/7.x/yum & for graylog use https://packages.graylog2.org/repo/el/stable/4.0/x86_64
 9. Some of the url's I used in my lab:
 	
-	elasticsearch_7_x86_64 	
+elasticsearch_7_x86_64
 	
 ```
 https://artifacts.elastic.co/packages/7.x/yum
 ```
-
-EPEL8                  	
-	
+EPEL8	
 ```
 https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64
 ```
