@@ -35,9 +35,7 @@ for i in $(seq 1 15); do hammer repository synchronize --product "example-name:C
 	
 	elasticsearch_7_x86_64 	
 	
-``` https://artifacts.elastic.co/packages/7.x/yum ```
-
-	
+```https://artifacts.elastic.co/packages/7.x/yum```
 	EPEL8                  	
 	
 ```https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64```
