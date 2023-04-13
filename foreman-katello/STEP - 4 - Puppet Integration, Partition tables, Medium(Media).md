@@ -67,9 +67,9 @@ foreman-installer --enable-foreman-plugin-puppet \
 
 <b>Puppet Environment:</b></n>
 Create a new environment, for Example: Production(already created by default), Dev, Testing, Lab etc. 
-Do not forget --locations and --organization flags, otherwise it will go to no-location and no-organization.
+Do not forget --locations and --organizations flags, otherwise it will go to no-location and no-organization.
 ```
-hammer puppet-environment create --name 'puppet-env-name-to-give' --locations 'XYZ' --organization 'XYZ'
+hammer puppet-environment create --name 'puppet-env-name-to-give' --locations 'XYZ' --organizations 'XYZ'
 ```
 
 <b>Host Group</b></n>
