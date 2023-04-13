@@ -3,7 +3,8 @@
 Create Medium with
 
 ```
-hammer medium create --name 'Rocky8_xDVD_FTP' --path 'ftp://katello.sat.local/pub/Rocky_8dvd_x86_64/' --os-family 'Redhat' --location 'London' --organization 'Axcme'
+hammer medium create --name 'Rocky8_xDVD_FTP' --path 'ftp://katello.sat.local/pub/Rocky_8dvd_x86_64/' \
+--os-family 'Redhat' --location 'London' --organization 'Axcme'
 ```
 
 <b>Partition tables:</b>
@@ -113,5 +114,12 @@ Add new role e.g. satelliteadminrole in vCenter and assign privileges as per For
 
 With above setup we can create a Vmware compute-resource
 ```
-hammer compute-resource create --datacenter 'DomainForest' --description 'vSphere server at vcenter.kazmi.lab' --locations 'London' --organizations 'Axcme' --name 'kattelo_vcenter' --provider 'Vmware' --server '10.0.40.9' --user 'satelliteadmin@vsphere.local' --password 'PASSWORD' --set-console-password false
+hammer compute-resource create --datacenter 'DomainForest' \
+--description 'vSphere server at vcenter.kazmi.lab' \
+--locations 'London' --organizations 'Axcme' \
+--name 'kattelo_vcenter' --provider 'Vmware' \
+--server '10.0.40.9' \
+--user 'satelliteadmin@vsphere.local' \
+--password 'PASSWORD' \
+--set-console-password false
 ```
