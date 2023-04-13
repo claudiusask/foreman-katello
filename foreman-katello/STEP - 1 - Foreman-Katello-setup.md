@@ -64,6 +64,12 @@ These are the instructions to build the basic Foreman Katello server from scratc
             --enable-foreman-plugin-virt-who-configure \
             --enable-foreman-cli-virt-who-configure \
             --enable-foreman-plugin-snapshot-management \
+            --enable-foreman-plugin-puppet \
+            --enable-foreman-cli-puppet \
+            --foreman-proxy-puppet true \
+            --foreman-proxy-puppetca true \
+            --enable-puppet \
+            --puppet-server true            
             
             --enable-foreman-plugin-wreckingball
             # on foreman 3.5 / Katello 4.7, wreckingball is giving issues. We can install (but not working!) it with dnf install rubygem-foreman_wreckingball. Read the plugin pages. Now run systemctl restart foreman, which will fail. So better find someother solution.
