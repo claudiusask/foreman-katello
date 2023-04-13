@@ -66,6 +66,7 @@ foreman-installer --enable-foreman-plugin-puppet \
 ```
 
 <b>Puppet Environment:</b></n>
+The 'hammer environment create or list' is depreciated.
 Create a new environment, for Example: Production(already created by default), Dev, Testing, Lab etc. 
 Do not forget --locations and --organizations flags, otherwise it will go to no-location and no-organization.
 ```
@@ -73,7 +74,23 @@ hammer puppet-environment create --name 'puppet-env-name-to-give' --locations 'X
 ```
 
 <b>Host Group</b></n>
-The 'hammer environment create or list' is depreciated so we create the Host group:
+We create the Host group:
 ```
-
+hammer hostgroup create \
+--name "rocky8_group" \
+--description "Host group for Rocky 8 servers" \
+--lifecycle-environment "stable" \
+--content-view "Rocky8_CV" \
+--content-source "katello.sat.local" \
+--puppet-environment 'puppet-env-name-given'
+--puppet-proxy-id 1 \
+--puppet-ca-proxy-id 1 \
+--domain "sat.local" \
+--subnet "sat_Local" \
+--architecture "x86_64" \
+--operatingsystem "Rocky Linux 8.7" \
+--medium "Rocky8_DVD_FTP" \
+--partition-table "Kickstart hardened 32GB" \
+--pxe-loader "PXELinux BIOS" \
+--root-password "PASSWORD"
 ```
