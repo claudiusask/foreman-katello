@@ -1,4 +1,4 @@
-<b>Medium:</b>
+<b>Medium:</b></n>
 
 Create Medium with
 
@@ -6,7 +6,7 @@ Create Medium with
 hammer medium create --name 'Rocky8_xDVD_FTP' --path 'ftp://katello.sat.local/pub/Rocky_8dvd_x86_64/' --os-family 'Redhat' --location 'London' --organization 'Axcme'
 ```
 
-<b>Partition tables</b>
+<b>Partition tables:</b>
 
 Now we create partition tables, we can use the default partition tables provided by Katello by let's try to make our own. 
 We can list the partition tables with
