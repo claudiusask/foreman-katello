@@ -51,6 +51,7 @@ Now run the below command
 hammer partition-table create --name 'Kickstart hardened 32GB' --os-family 'Redhat' --operatingsystems 'Rocky Linux 8.7' --file 'hardened_ptable.txt'
 ```
 <b>Puppet Integration</b></n>
+
 Run the following to integrate puppet with Foreman-Katello. If we already enabled these in step 1 we do't have to re run it.
 ```
 foreman-installer --enable-foreman-plugin-puppet \
@@ -66,6 +67,7 @@ foreman-installer --enable-foreman-plugin-puppet \
 ```
 
 <b>Puppet Environment:</b></n>
+
 The 'hammer environment create or list' is depreciated.
 Create a new environment, for Example: Production(already created by default), Dev, Testing, Lab etc. 
 Do not forget --locations and --organizations flags, otherwise it will go to no-location and no-organization.
@@ -74,6 +76,7 @@ hammer puppet-environment create --name 'puppet-env-name-to-give' --locations 'X
 ```
 
 <b>Host Group</b></n>
+
 We create the Host group:
 ```
 hammer hostgroup create \
@@ -96,15 +99,18 @@ hammer hostgroup create \
 ```
 
 <b>Activation key:</b></n>
+
 Activation key we created in previous steps are associated with this new Hostgroup
 ```
 hammer hostgroup set-parameter --name 'kt_activation_keys' --value 'rocky8-main-key' --hostgroup 'rocky8_group'
 ```
 
-<b>Vmware setup:</b></n>
+<b>Vmware setup:</b>
+
 Add new role e.g. satelliteadminrole in vCenter and assign privileges as per Foreman-Katello documentation. Now create new user e.g. satelliteadmin in vCenter and assign it the satelliteadminrole. Add new user at the bottom of Administration of vCenter and assign it new satelliteadminrole. Now go to vCenter->Inventory->rightclick'Datacenter'->Add Permission-> add satelliteadmin and assign it satelliteadminrole.
 
-<b>Compute-Resource for Vmware:</b></n>
+<b>Compute-Resource for Vmware:</b>
+
 With above setup we can create a Vmware compute-resource
 ```
 hammer compute-resource create --datacenter 'DomainForest' --description 'vSphere server at vcenter.kazmi.lab' --locations 'London' --organizations 'Axcme' --name 'kattelo_vcenter' --provider 'Vmware' --server '10.0.40.9' --user 'satelliteadmin@vsphere.local' --password 'PASSWORD' --set-console-password false
