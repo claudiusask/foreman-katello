@@ -94,3 +94,18 @@ hammer hostgroup create \
 --pxe-loader "PXELinux BIOS" \
 --root-password "PASSWORD"
 ```
+
+<b>Activation key:</b></n>
+Activation key we created in previous steps are associated with this new Hostgroup
+```
+hammer hostgroup set-parameter --name 'kt_activation_keys' --value 'rocky8-main-key' --hostgroup 'rocky8_group'
+```
+
+<b>Vmware setup:</b></n>
+Add new role e.g. satelliteadminrole in vCenter and assign privileges as per Foreman-Katello documentation. Now create new user e.g. satelliteadmin in vCenter and assign it the satelliteadminrole. Add new user at the bottom of Administration of vCenter and assign it new satelliteadminrole. Now go to vCenter->Inventory->rightclick'Datacenter'->Add Permission-> add satelliteadmin and assign it satelliteadminrole.
+
+<b>Compute-Resource for Vmware:</b></n>
+With above setup we can create a Vmware compute-resource
+```
+hammer compute-resource create --datacenter 'DomainForest' --description 'vSphere server at vcenter.kazmi.lab' --locations 'London' --organizations 'Axcme' --name 'kattelo_vcenter' --provider 'Vmware' --server '10.0.40.9' --user 'satelliteadmin@vsphere.local' --password 'PASSWORD' --set-console-password false
+```
