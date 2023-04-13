@@ -1,4 +1,4 @@
-<b>Medium:</b></n>
+<b>Medium:</b>
 
 Create Medium with
 
@@ -6,7 +6,7 @@ Create Medium with
 hammer medium create --name 'Rocky8_xDVD_FTP' --path 'ftp://katello.sat.local/pub/Rocky_8dvd_x86_64/' --os-family 'Redhat' --location 'London' --organization 'Axcme'
 ```
 
-<b>Partition tables:</b></n>
+<b>Partition tables:</b>
 
 Now we create partition tables, we can use the default partition tables provided by Katello by let's try to make our own. 
 We can list the partition tables with
@@ -50,7 +50,7 @@ Now run the below command
 ```
 hammer partition-table create --name 'Kickstart hardened 32GB' --os-family 'Redhat' --operatingsystems 'Rocky Linux 8.7' --file 'hardened_ptable.txt'
 ```
-<b>Puppet Integration</b></n>
+<b>Puppet Integration</b>
 
 Run the following to integrate puppet with Foreman-Katello. If we already enabled these in step 1 we do't have to re run it.
 ```
@@ -66,7 +66,7 @@ foreman-installer --enable-foreman-plugin-puppet \
 --puppet-server-foreman-ssl-key /etc/pki/katello/puppet/puppet_client.key
 ```
 
-<b>Puppet Environment:</b></n>
+<b>Puppet Environment:</b>
 
 The 'hammer environment create or list' is depreciated.
 Create a new environment, for Example: Production(already created by default), Dev, Testing, Lab etc. 
@@ -75,7 +75,7 @@ Do not forget --locations and --organizations flags, otherwise it will go to no-
 hammer puppet-environment create --name 'puppet-env-name-to-give' --locations 'XYZ' --organizations 'XYZ'
 ```
 
-<b>Host Group</b></n>
+<b>Host Group</b>
 
 We create the Host group:
 ```
@@ -98,7 +98,7 @@ hammer hostgroup create \
 --root-password "PASSWORD"
 ```
 
-<b>Activation key:</b></n>
+<b>Activation key:</b>
 
 Activation key we created in previous steps are associated with this new Hostgroup
 ```
