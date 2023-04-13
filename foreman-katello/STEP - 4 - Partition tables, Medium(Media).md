@@ -50,6 +50,16 @@ Now run the below command
 ```
 hammer partition-table create --name 'Kickstart hardened 32GB' --os-family 'Redhat' --operatingsystems 'Rocky Linux 8.7' --file 'hardened_ptable.txt'
 ```
+<b>Puppet Integration</b></n>
+Run the following to integrate puppet with Foreman-Katello. If we already enabled these in step 1 we do't have to re run it.
+```
+foreman-installer --enable-foreman-plugin-puppet \
+--enable-foreman-cli-puppet \
+--foreman-proxy-puppet true \
+--foreman-proxy-puppetca true \
+--enable-puppet \
+--puppet-server true
+```
 
 <b>Host Group</b></n>
 The 'hammer environment create or list' is depreciated so we create the Host group:
