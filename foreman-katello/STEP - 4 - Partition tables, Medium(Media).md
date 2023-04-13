@@ -50,3 +50,9 @@ Now run the below command
 ```
 hammer partition-table create --name 'Kickstart hardened 32GB' --os-family 'Redhat' --operatingsystems 'Rocky Linux 8.7' --file 'hardened_ptable.txt'
 ```
+
+<b>Host Group</b></n>
+The 'hammer environment create or list' is depreciated so we create the Host group:
+```
+
+```
