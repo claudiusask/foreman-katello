@@ -120,6 +120,6 @@ hammer compute-resource create --datacenter 'DomainForest' \
 --name 'kattelo_vcenter' --provider 'Vmware' \
 --server '10.0.40.9' \
 --user 'satelliteadmin@vsphere.local' \
---password 'PASSWORD' \
+--password 'satelliteadminPASSWORD' \
 --set-console-password false
 ```
