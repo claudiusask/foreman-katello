@@ -64,12 +64,19 @@ These are the instructions to build the basic Foreman Katello server from scratc
             --enable-foreman-plugin-virt-who-configure \
             --enable-foreman-cli-virt-who-configure \
             --enable-foreman-plugin-snapshot-management \
-            --enable-foreman-plugin-puppet \
+            
+            # Add the below and run it, if it gives issues remove these and run these separate later
+            
+            foreman-installer --enable-foreman-plugin-puppet \
             --enable-foreman-cli-puppet \
             --foreman-proxy-puppet true \
             --foreman-proxy-puppetca true \
+            --foreman-proxy-content-puppet true \
             --enable-puppet \
-            --puppet-server true            
+            --puppet-server true \
+            --puppet-server-foreman-ssl-ca /etc/pki/katello/puppet/puppet_client_ca.crt \
+            --puppet-server-foreman-ssl-cert /etc/pki/katello/puppet/puppet_client.crt \
+            --puppet-server-foreman-ssl-key /etc/pki/katello/puppet/puppet_client.key
             
             --enable-foreman-plugin-wreckingball
             # on foreman 3.5 / Katello 4.7, wreckingball is giving issues. We can install (but not working!) it with dnf install rubygem-foreman_wreckingball. Read the plugin pages. Now run systemctl restart foreman, which will fail. So better find someother solution.
