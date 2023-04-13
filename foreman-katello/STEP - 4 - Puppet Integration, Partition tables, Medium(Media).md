@@ -57,8 +57,12 @@ foreman-installer --enable-foreman-plugin-puppet \
 --enable-foreman-cli-puppet \
 --foreman-proxy-puppet true \
 --foreman-proxy-puppetca true \
+--foreman-proxy-content-puppet true \
 --enable-puppet \
---puppet-server true
+--puppet-server true \
+--puppet-server-foreman-ssl-ca /etc/pki/katello/puppet/puppet_client_ca.crt \
+--puppet-server-foreman-ssl-cert /etc/pki/katello/puppet/puppet_client.crt \
+--puppet-server-foreman-ssl-key /etc/pki/katello/puppet/puppet_client.key
 ```
 
 <b>Host Group</b></n>
