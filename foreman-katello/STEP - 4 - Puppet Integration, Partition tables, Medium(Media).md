@@ -127,6 +127,13 @@ hammer compute-resource create --datacenter 'DomainForest' \
 <b>Compute Profile:</b>
 
 The JSON format is working better so we can create the profiles in CLI with it.
+First we create profile with
+
+```
+hammer compute-profile create --name 'XYZ_Profile'
+```
+
+Now we can set VMware details to a compute profile
 
 ```
 hammer compute-profile values create \
