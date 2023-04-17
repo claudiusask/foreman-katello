@@ -123,3 +123,4 @@ hammer compute-resource create --datacenter 'DomainForest' \
 --password 'satelliteadminPASSWORD' \
 --set-console-password false
 ```
+
