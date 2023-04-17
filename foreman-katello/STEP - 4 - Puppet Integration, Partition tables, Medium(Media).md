@@ -124,7 +124,7 @@ hammer compute-resource create --datacenter 'DomainForest' \
 --set-console-password false
 ```
 
-<b><u>Compute Profile:</u></b>
+<b>Compute Profile:</b>
 
 The JSON format is working better so we can create the profiles in CLI with it.
 First we create profile with
