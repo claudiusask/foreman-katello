@@ -124,3 +124,14 @@ hammer compute-resource create --datacenter 'DomainForest' \
 --set-console-password false
 ```
 
+<b>Compute Profile:</b>
+
+The JSON format is working better so we can create the profiles in CLI with it.
+
+```
+hammer compute-profile values create \
+--compute-profile-id 6 --compute-resource-id 1 \
+'--compute-attributes={"cpus":1,"corespersocket":2,"memory_mb":2048,"firmware":"efi","resource_pool":"Resources","cluster":"Forest Cluster","guest_id":"centos8_64Guest","path":"/Datacenters/DomainForest/vm/ForemanLab","hardware_version":"Default","memoryHotAddEnabled":0,"cpuHotAddEnabled":0,"add_cdrom":0,"boot_order":["disk","network"],"scsi_controllers":[{"type":"ParaVirtualSCSIController","key":1000},{"type":"ParaVirtualSCSIController","key":1001}]}' \
+'--interface={"compute_type":"VirtualVmxnet3","compute_network":"network-28"}' \
+'--volume={"size_gb":"20G","datastore":"datastore-26","name":"katelloDisk","thin":"true"}'
+```
