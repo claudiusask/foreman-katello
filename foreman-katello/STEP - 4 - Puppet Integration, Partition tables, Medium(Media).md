@@ -153,8 +153,10 @@ So what I did was created 4 files:
   2. multi_host_deploy.sh
   3. update_host_mac.sh
   4. macadd_scripts.ps1
- <b> 1. Hosts.csv: </b> So in this what i added were HOSTNAME,00:00:00:00. First we add hostname without fQDN, so just the hostname and after the comma we can add MAC_Address.
+ <b> 1. Hosts.csv: </b> So in this what i added were HOSTNAME,00:00:00:00. First we add hostname without fQDN, so just the hostname and after the comma we can add MAC_Address. We can add other hosts on each new line.
+ 
  <b> 2. Multi_host_deploy.sh Script: </b> In this we added the following script:
+ 
 ```
   #!/bin/bash
 
@@ -174,3 +176,41 @@ done < hosts.csv
 pwsh ./macadd_script.ps1
 ```
 What this is doing is using the hosts.csv from step 1 and looping through all the systems HOSTNAME and mac_address and creating them one by one, remember the mac_address at this moment will be given out automatically by VMware. In the last step we run the powershell-powercli script macadd_script.ps1 which will change the mac_add of all the hosts as per our policy in our Datacenter. But the mac_address in the Foreman-Katello is still the old one which as auto-given by VMware.
+
+<b> 3. Update_mac_host.sh: </b> This is th script used to update the hosts mac_address in Foreman-Katello.
+
+```
+#!/bin/bash
+
+while IFS=, read -r host_name mac_add
+do
+mac_get=$(hammer host info --name ${host_name}.sat.local --fields Network/mac | awk '{ print $2; }' | awk '!/^$/')
+
+if [[ "${mac_add}" != "$mac_get" ]]
+then
+        hammer host update --name ${host_name}.sat.local --mac ${mac_add}
+        echo "Mac address for ${host_name} has been update"
+else
+        echo "Mac address is same, no need to update for ${host_name}"
+fi
+done < hosts.csv
+
+```
+
+<b> 4. macadd_script.ps1: </b> We have to install powershell on Katello server. Then we have to install powercli in powershell and then we can run this script which will update the mac_address on the Vmware vm's. All these mac_address update scripts will auto find, compare and if needed will update the mac_addresses.
+
+```
+Connect-VIServer -Server 'vcenter.xyz.com' -Protocol https -User 'administrator@vsphere.local' -Password '123456789-or-whatever'
+
+$hosts_get = Import-Csv -Path "hosts.csv" -Header 'Host', 'Mac'
+
+foreach ($item in $hosts_get) {
+        # Access the key-value pairs using dot notation
+        $get_mac = Get-VM "$($item.Host).sat.local" | Get-NetworkAdapter | select -ExpandProperty MacAddress
+        if($get_mac -ne $item.Mac){
+                Get-VM "$($item.Host).sat.local" | Get-NetworkAdapter | Set-NetworkAdapter -MacAddress $item.Mac -Confirm:$false
+        }
+}
+disconnect-viserver -confirm:$false
+
+```
