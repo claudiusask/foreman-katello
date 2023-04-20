@@ -133,7 +133,7 @@ First we create profile with
 hammer compute-profile create --name 'XYZ_Profile'
 ```
 
-Now we can set VMware details to a compute profile
+Now we can set VMware details to a compute profile, we will use this profile in next step.
 
 ```
 hammer compute-profile values create \
@@ -142,3 +142,35 @@ hammer compute-profile values create \
 '--interface={"compute_type":"VirtualVmxnet3","compute_network":"network-28"}' \
 '--volume={"size_gb":"20G","datastore":"DISKNAME","name":"katelloDisk","thin":"true"}'
 ```
+<b>Create Host:</b>
+
+The host can be create indiviually or we can run a script which I did and created bunch of host. 
+
+<b>The plan to create hosts with scripts:</b>
+
+So what I did was created 4 files:
+  1. hosts.csv
+  2. multi_host_deploy.sh
+  3. update_host_mac.sh
+  4. macadd_scripts.ps1
+ <b> 1. Hosts.csv: </b> So in this what i added were HOSTNAME,00:00:00:00. First we add hostname without fQDN, so just the hostname and after the comma we can add MAC_Address.
+ <b> 2. Multi_host_deploy.sh Script: </b> In this we added the following script:
+```
+  #!/bin/bash
+
+while IFS=, read -r host_name mac_add
+do
+hammer host create --compute-profile-id 7 \
+--compute-resource "katello_vcenter" \
+--enabled true \
+--hostgroup "rocky8_group" \
+--image "rocky_8_xTemp" \
+--location "London" \
+--managed true \
+--name "${host_name}" \
+--organization "XYZ" \
+--provision-method image
+done < hosts.csv
+pwsh ./macadd_script.ps1
+```
+What this is doing is using the hosts.csv from step 1 and looping through all the systems HOSTNAME and mac_address and creating them one by one, remember the mac_address at this moment will be given out automatically by VMware. In the last step we run the powershell-powercli script macadd_script.ps1 which will change the mac_add of all the hosts as per our policy in our Datacenter. But the mac_address in the Foreman-Katello is still the old one which as auto-given by VMware.
