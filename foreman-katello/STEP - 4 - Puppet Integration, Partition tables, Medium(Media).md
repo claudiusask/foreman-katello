@@ -1,4 +1,4 @@
-So Instead of creating Medium and Partition Tables, it's better to use templates on VMware. We can create our own template(image) with Hashigroup Packer. After creating this template on VMware we can setup this for CLoud-init as per Foreman documentation.
+So Instead of creating Medium and Partition Tables, it's better to use templates on VMware. We can create our own template(image) with Hashigroup Packer. After creating this template on VMware we can setup this for Cloud-init as per Foreman documentation.
 
 # Setup Cloud-init for Image on VMware
 
