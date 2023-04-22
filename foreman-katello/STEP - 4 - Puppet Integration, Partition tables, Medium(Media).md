@@ -260,9 +260,6 @@ hammer hostgroup create \
 --subnet "sat_Local" \
 --architecture "x86_64" \
 --operatingsystem "Rocky Linux 8.7" \
---medium "Rocky8_DVD_FTP" \
---partition-table "Kickstart hardened 32GB" \
---pxe-loader "PXELinux BIOS" \
 --root-password "PASSWORD"
 ```
 
