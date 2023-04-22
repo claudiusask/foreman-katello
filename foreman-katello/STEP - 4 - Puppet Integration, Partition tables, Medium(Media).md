@@ -132,6 +132,12 @@ Remove root user’s shell history:
 # unset HISTFILE
 ```
 
+On the Foreman-Katello server we have to run this command to configure a setting to recognize host ip addresses as per our ip range:
+
+```
+foreman-installer --foreman-trusted-proxies 127.0.0.1/8 --foreman-trusted-proxies ::1 --foreman-trusted-proxies 192.0.2.0/24
+```
+
 <i>
 *** OLD way START***
 
