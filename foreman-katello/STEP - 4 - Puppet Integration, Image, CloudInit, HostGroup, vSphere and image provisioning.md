@@ -386,4 +386,4 @@ disconnect-viserver -confirm:$false
 
 The Puppet signing requests for all servers will be listed under:
 
-Infrastructure > Smart Proxies > Puppet CA > Certificates
+Infrastructure > Smart Proxies > Puppet CA > Certificates   and add *.xyz.com
