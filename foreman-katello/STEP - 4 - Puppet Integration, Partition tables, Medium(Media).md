@@ -196,7 +196,7 @@ hammer partition-table create --name 'Kickstart hardened 32GB' --os-family 'Redh
 ```
 *** OLD way END***
 </i>
-
+  
 <b>Puppet Integration</b>
 
 Run the following to integrate puppet with Foreman-Katello. If we already enabled these in step 1 we do't have to re run it.
@@ -221,6 +221,27 @@ Do not forget --locations and --organizations flags, otherwise it will go to no-
 ```
 hammer puppet-environment create --name 'puppet-env-name-to-give' --locations 'XYZ' --organizations 'XYZ'
 ```
+# Create or Configure OS:
+We need to configure or create new OS for image provisioning using the template(image) we setup in previous setps.
+
+```
+hammer os create --name RockyOSD8 --major 8 --minor 7 --family 'Redhat' --password-hash 'SHA256' --architectures x86_64
+```
+
+Now we associate the 'Cloud-init default' and 'UserData open-vm-tools' provisioning template with our OS. 
+To find the id of templates, run:
+
+```
+hammer template list
+```
+
+To Associate the template with OS run: Also re run again if needed to add more templates:
+
+```
+hammer template add-operatingsystem --id 30 --operatingsystem-id 5
+```
+Now for the next setup I have not found anything with 'hammer os cli' so i will use GUI.
+  HOST --> Provisioning Setup --> Operating Systems --> SELECT-new-os-we-create-in-previous-steps --> Templates and select the approriate templates for Cloud-init and UserData. Remove all others.
 
 <b>Host Group</b>
 
