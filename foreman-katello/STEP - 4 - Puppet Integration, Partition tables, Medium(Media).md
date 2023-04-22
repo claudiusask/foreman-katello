@@ -133,6 +133,8 @@ Remove root user’s shell history:
 ```
 
 <i>
+*** OLD way START***
+
 <b>Medium:</b>
 
 Create Medium with
@@ -186,7 +188,7 @@ Now run the below command
 ```
 hammer partition-table create --name 'Kickstart hardened 32GB' --os-family 'Redhat' --operatingsystems 'Rocky Linux 8.7' --file 'hardened_ptable.txt'
 ```
-  
+*** OLD way END***
 </i>
 
 <b>Puppet Integration</b>
