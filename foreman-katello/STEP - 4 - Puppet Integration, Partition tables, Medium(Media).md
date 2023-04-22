@@ -378,3 +378,5 @@ foreach ($item in $hosts_get) {
 disconnect-viserver -confirm:$false
 
 ```
+
+# Check vm nic in vSphere if they are connected after changing the mac_address.
