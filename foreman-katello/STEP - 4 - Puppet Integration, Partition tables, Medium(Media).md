@@ -1,3 +1,138 @@
+So Instead of creating Medium and Partition Tables, it's better to use templates on VMware. We can create our own template(image) with Hashigroup Packer. After creating this template on VMware we can setup this for CLoud-init as per Foreman documentation.
+
+<b>Setup Cloud-init for Image on VMware</b>
+
+Convert the template and run the following commands or add these commands in the packer's post installation scripts so we don't have to do it manually.
+
+
+These instructions are for Enterprise Linux or Fedora, follow similar steps for other Linux distributions.
+Procedure
+
+On the virtual machine that you use to create the image, install cloud-init, open-vm-tools, and perl:
+
+# dnf install cloud-init open-vm-tools perl
+
+```
+Disable network configuration by cloud-init:
+```
+
+```
+# cat << EOM > /etc/cloud/cloud.cfg.d/01_network.cfg
+network:
+  config: disabled
+EOM
+```
+
+Configure cloud-init to fetch data from Foreman:
+
+```
+# cat << EOM > /etc/cloud/cloud.cfg.d/10_datasource.cfg
+datasource_list: [NoCloud]
+datasource:
+  NoCloud:
+seedfrom: https://foreman.example.com/userdata/
+EOM
+```
+
+Configure modules to use in cloud-init:
+
+```
+# cat << EOM > /etc/cloud/cloud.cfg
+cloud_init_modules:
+ - bootcmd
+
+cloud_config_modules:
+ - runcmd
+
+cloud_final_modules:
+ - scripts-per-once
+ - scripts-per-boot
+ - scripts-per-instance
+ - scripts-user
+ - phone-home
+
+system_info:
+  distro: rhel
+  paths:
+cloud_dir: /var/lib/cloud
+templates_dir: /etc/cloud/templates
+  ssh_svcname: sshd
+EOM
+```
+
+Enable the CA certificates for the image:
+
+```
+# update-ca-trust enable
+```
+
+Download the katello-server-ca.crt file from Foreman server:
+
+```
+# wget -O /etc/pki/ca-trust/source/anchors/cloud-init-ca.crt http://foreman.example.com/pub/katello-server-ca.crt
+```
+
+To update the record of certificates, enter the following command:
+
+```
+# update-ca-trust extract
+```
+
+Use the following commands to clean the image:
+
+```
+# systemctl stop rsyslog
+# service auditd stop  *** systemctl stop auditd doesn't work
+# *** Doesn't work *** No need to do this package-cleanup --oldkernels --count=1
+# dnf clean all
+```
+
+Use the following commands to reduce logspace, remove old logs, and truncate logs:
+
+```
+# logrotate -f /etc/logrotate.conf
+# rm -f /var/log/*-???????? /var/log/*.gz
+# rm -f /var/log/dmesg.old
+# rm -rf /var/log/anaconda
+# cat /dev/null > /var/log/audit/audit.log
+# cat /dev/null > /var/log/wtmp
+# cat /dev/null > /var/log/lastlog
+# cat /dev/null > /var/log/grubby
+```
+
+Remove udev hardware rules:
+
+```
+# rm -f /etc/udev/rules.d/70*
+```
+
+Remove the ifcfg scripts related to existing network configurations:
+
+```
+# rm -f /etc/sysconfig/network-scripts/ifcfg-ens*
+# rm -f /etc/sysconfig/network-scripts/ifcfg-eth*
+```
+
+Remove the SSH host keys:
+
+```
+# rm -f /etc/ssh/SSH_keys
+```
+
+Remove root user’s SSH history:
+
+```
+# rm -rf ~root/.ssh/known_hosts
+```
+
+Remove root user’s shell history:
+
+```
+# rm -f ~root/.bash_history
+# unset HISTFILE
+```
+
+
 <b>Medium:</b>
 
 Create Medium with
