@@ -380,3 +380,10 @@ disconnect-viserver -confirm:$false
 ```
 
 # Check vm nic in vSphere if they are connected after changing the mac_address.
+
+
+# Autosign Puppet Signing Requests -- Only GUI
+
+The Puppet signing requests for all servers will be listed under:
+
+Infrastructure > Smart Proxies > Puppet CA > Certificates
