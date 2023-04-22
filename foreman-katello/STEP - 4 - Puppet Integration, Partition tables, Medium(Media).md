@@ -132,7 +132,7 @@ Remove root user’s shell history:
 # unset HISTFILE
 ```
 
-
+<i>
 <b>Medium:</b>
 
 Create Medium with
@@ -186,6 +186,9 @@ Now run the below command
 ```
 hammer partition-table create --name 'Kickstart hardened 32GB' --os-family 'Redhat' --operatingsystems 'Rocky Linux 8.7' --file 'hardened_ptable.txt'
 ```
+  
+</i>
+
 <b>Puppet Integration</b>
 
 Run the following to integrate puppet with Foreman-Katello. If we already enabled these in step 1 we do't have to re run it.
