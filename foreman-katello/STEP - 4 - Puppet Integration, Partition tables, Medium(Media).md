@@ -12,9 +12,8 @@ On the virtual machine that you use to create the image, install cloud-init, ope
 
 # dnf install cloud-init open-vm-tools perl
 
-```
+
 Disable network configuration by cloud-init:
-```
 
 ```
 # cat << EOM > /etc/cloud/cloud.cfg.d/01_network.cfg
