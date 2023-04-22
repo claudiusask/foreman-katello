@@ -379,7 +379,7 @@ disconnect-viserver -confirm:$false
 
 ```
 
-# Check vm nic in vSphere if they are connected after changing the mac_address.
+<i> Check vm nic in vSphere if they are connected after changing the mac_address. </i>
 
 
 # Autosign Puppet Signing Requests -- Only GUI
