@@ -1,6 +1,6 @@
 So Instead of creating Medium and Partition Tables, it's better to use templates on VMware. We can create our own template(image) with Hashigroup Packer. After creating this template on VMware we can setup this for CLoud-init as per Foreman documentation.
 
-<b>Setup Cloud-init for Image on VMware</b>
+# Setup Cloud-init for Image on VMware
 
 Convert the template and run the following commands or add these commands in the packer's post installation scripts so we don't have to do it manually.
 
@@ -10,8 +10,9 @@ Procedure
 
 On the virtual machine that you use to create the image, install cloud-init, open-vm-tools, and perl:
 
-# dnf install cloud-init open-vm-tools perl
-
+```
+dnf install cloud-init open-vm-tools perl
+```
 
 Disable network configuration by cloud-init:
 
