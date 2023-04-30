@@ -18,8 +18,8 @@ hammer product create --name 'example-name:CentOS8' --description 'description t
 
 4. With product in place create repository from this product. Find the repo url on the respected OS.
 
-hammer repository create --product 'example-name:CentOS8' \
 ```
+hammer repository create --product 'example-name:CentOS8' \
 --name 'examplename' --label 'examplename' --content-type yum \
 --download policy 'on_demand' --gpg-key-id '#get the number from content-credentials list' \
 --url 'the-repo-url-of-the-package' --mirror-on-sync 'no' 
