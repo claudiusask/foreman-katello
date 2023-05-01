@@ -118,3 +118,7 @@ for i in $(seq 1 3); do hammer activation-key add-subscription --name "new_key_n
 3. We add newly created product into CV and republish it with new version.
 4. Promote the new version of CV to lifecycle-environment (Library is default).
 5. In Activation-key we must add new product into the subscription.
+6. In the last we run the following command to attach subscription to the host.
+```
+hammer host subscription product-content --host-id 31
+```
