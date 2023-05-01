@@ -79,6 +79,13 @@ Zabbix_60_x86_64
 https://repo.zabbix.com/zabbix/6.0/rhel/8/x86_64/
 ```
 
+<b> Foreman client Repos:</b>
+These are required to download some utils for katello, like katello-host-tools. Create a new product and add this repo into new repositry inside this
+product.
+```
+https://yum.theforeman.org/client/3.5/el8/x86_64/
+```
+
 10. Now we move to content-View, which is snapshot of one or more repositories and/or puppet modules.
 11. We create the content-view, add the repositories with ID and publish it. If we already have the content-view and we just want to add some more repositories we don't have to re-create it but we just add the repos and publish a new version.
 ```
@@ -88,7 +95,7 @@ for i in $(seq 1 27); do hammer content-view add-repository --name "new_name_Con
 	
 hammer content-view publish --name "new_name_Content-View" --description "Publishing vx.x"
 ```
-12. Create a new Lifecycle. A lifecycle environment is like a container for content view versions which are used by content hosts. We can have different “containers” for different lifecycle environments (eg. Ddevelopment, Testing, Production).
+12. Create a new Lifecycle. A lifecycle environment is like a container for content view versions which are used by content hosts. We can have different “containers” for different lifecycle environments (eg. Development, Testing, Production).
 ```	
 hammer lifecycle-environment create --name "new_name_LFC" --label "same_like_name_or_bit_different" --prior "Library" or "Dev" or "Test" or "Prod"
 		
@@ -103,3 +110,11 @@ hammer activation-key create --name "new_key_name" --description "description fo
 for i in $(seq 1 3); do hammer activation-key add-subscription --name "new_key_name" --quantity 1 --subscription-id "$i"; done
 	
 ```
+
+## How to add New products and repositories in already running setup?
+
+1. Add new content-credentials if available.
+2. Create new product and add new repository and fill in the details as mentioned above.
+3. We add newly created product into CV and republish it with new version.
+4. Promote the new version of CV to lifecycle-environment (Library is default).
+5. In Activation-key we must add new product into the subscription.
