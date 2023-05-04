@@ -122,3 +122,6 @@ for i in $(seq 1 3); do hammer activation-key add-subscription --name "new_key_n
 ```
 hammer host subscription product-content --host-id 31
 ```
+```
+hammer host subscription attach --subscription-id 6 --host-id 31
+```
