@@ -64,6 +64,8 @@ These are the instructions to build the basic Foreman Katello server from scratc
             --enable-foreman-plugin-virt-who-configure \
             --enable-foreman-cli-virt-who-configure \
             --enable-foreman-plugin-snapshot-management \
+            --enable-foreman-plugin-remote-execution \
+            --enable-foreman-proxy-plugin-remote-execution-script \
             
             # Add the below and run it, if it gives issues remove these and run these separate later
             
