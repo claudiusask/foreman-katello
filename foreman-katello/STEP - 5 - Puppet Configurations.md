@@ -11,7 +11,15 @@ Change the temp directory in /etc/sysconfig/puppetserver and add <i>-Djava.io.tm
 ```
 JAVA_ARGS="-Xms2G -Xmx2G ......... -Djava.io.tmpdir=/opt/puppetlabs/tmp"
 ```
-
+<b>Tmp directory service </b>
+Start and enable the tmp.mount service
+```
+systemctl start tmp.mount
+```
+now enable it
+```
+systemctl enable tmp.mount
+```
 ALSO don't forget the DNS, if the host-client can't see hostname of katello server or the katello server can't ping the host-client hostname, the remote execution doesn't work.
 
 <b>File Structure</b>
