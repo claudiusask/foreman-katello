@@ -1,5 +1,19 @@
 ## Now we need to setup Puppet.
 
+It's better to change the /tmp directory for puppetserver (Foreman-Katello is my puppetserver or proxyServer)
+Create a directory in new location
+
+```
+mkdir -m 1777 /opt/puppetlabs/tmp
+```
+Change the temp directory in /etc/sysconfig/puppetserver and add <i>-Djava.io.tmpdir=/opt/puppetlabs/tmp</i> at the end of the below line.
+
+```
+JAVA_ARGS="-Xms2G -Xmx2G ......... -Djava.io.tmpdir=/opt/puppetlabs/tmp"
+```
+
+ALSO don't forget the DNS, if the host-client can't see hostname of katello server or the katello server can't ping the host-client hostname, the remote execution doesn't work.
+
 <b>File Structure</b>
 Let us go ahead and create a folder structure:
 
