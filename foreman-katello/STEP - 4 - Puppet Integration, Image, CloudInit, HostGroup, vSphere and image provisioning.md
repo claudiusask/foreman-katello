@@ -323,7 +323,7 @@ So what I did was created 4 files:
  <b> 2. Multi_host_deploy.sh Script: </b> In this we added the following script:
  
 ```
-  #!/bin/bash
+#!/bin/bash
 
 while IFS=, read -r host_name mac_add
 do
@@ -340,6 +340,7 @@ hammer host create --compute-profile-id 7 \
 done < hosts.csv
 pwsh ./macadd_script.ps1
 ```
+                
 What this is doing is using the hosts.csv from step 1 and looping through all the systems HOSTNAME and mac_address and creating them one by one, remember the mac_address at this moment will be given out automatically by VMware. In the last step we run the powershell-powercli script macadd_script.ps1 which will change the mac_add of all the hosts as per our policy in our Datacenter. But the mac_address in the Foreman-Katello is still the old one which as auto-given by VMware, even if we explicitly give the mac-address in the above script.
 
 <b> 3. Update_mac_host.sh: </b> This is the script used to update the hosts mac_address in Foreman-Katello.
@@ -374,6 +375,7 @@ foreach ($item in $hosts_get) {
         $get_mac = Get-VM "$($item.Host).sat.local" | Get-NetworkAdapter | select -ExpandProperty MacAddress
         if($get_mac -ne $item.Mac){
                 Get-VM "$($item.Host).sat.local" | Get-NetworkAdapter | Set-NetworkAdapter -MacAddress $item.Mac -Confirm:$false
+                Get-VM "$($item.Host).sat.local" | Get-NetworkAdapter | Set-NetworkAdapter -startconnected:$true -Confirm:$false
         }
 }
 disconnect-viserver -confirm:$false
