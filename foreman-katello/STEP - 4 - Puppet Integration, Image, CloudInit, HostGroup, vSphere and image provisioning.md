@@ -318,7 +318,7 @@ So what I did was created 4 files:
   3. update_host_mac.sh
   4. macadd_scripts.ps1
   
- <b> 1. Hosts.csv: </b> So in this what i added were HOSTNAME,00:00:00:00. First we add hostname without fQDN, so just the hostname and after the comma we can add MAC_Address. We can add other hosts on each new line.
+ <b> 1. Hosts.csv: </b> So in this what i added were HOSTNAME,00:00:00:00,ip-address. First we add hostname without fQDN, so just the hostname after the comma we can add MAC_Address and after another comma we add ip-address. We can add other hosts on each new line.
  
  <b> 2. Multi_host_deploy.sh Script: </b> In this we added the following script:
  
@@ -340,9 +340,9 @@ hammer host create --compute-profile-id 7 \
 done < hosts.csv
 pwsh ./macadd_script.ps1
 ```
-What this is doing is using the hosts.csv from step 1 and looping through all the systems HOSTNAME and mac_address and creating them one by one, remember the mac_address at this moment will be given out automatically by VMware. In the last step we run the powershell-powercli script macadd_script.ps1 which will change the mac_add of all the hosts as per our policy in our Datacenter. But the mac_address in the Foreman-Katello is still the old one which as auto-given by VMware.
+What this is doing is using the hosts.csv from step 1 and looping through all the systems HOSTNAME and mac_address and creating them one by one, remember the mac_address at this moment will be given out automatically by VMware. In the last step we run the powershell-powercli script macadd_script.ps1 which will change the mac_add of all the hosts as per our policy in our Datacenter. But the mac_address in the Foreman-Katello is still the old one which as auto-given by VMware, even if we explicitly give the mac-address in the above script.
 
-<b> 3. Update_mac_host.sh: </b> This is th script used to update the hosts mac_address in Foreman-Katello.
+<b> 3. Update_mac_host.sh: </b> This is the script used to update the hosts mac_address in Foreman-Katello.
 
 ```
 #!/bin/bash
