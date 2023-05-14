@@ -66,6 +66,8 @@ These are the instructions to build the basic Foreman Katello server from scratc
             --enable-foreman-plugin-snapshot-management \
             --enable-foreman-plugin-remote-execution \
             --enable-foreman-proxy-plugin-remote-execution-script \
+            --enable-foreman-plugin-ansible \
+            --enable-foreman-proxy-plugin-ansible \
             
             # Add the below and run it, if it gives issues remove these and run these separate later
             
