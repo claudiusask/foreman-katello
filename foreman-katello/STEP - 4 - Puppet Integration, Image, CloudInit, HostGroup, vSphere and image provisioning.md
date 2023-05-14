@@ -317,6 +317,7 @@ So what I did was created 4 files:
   2. multi_host_deploy.sh
   3. update_host_mac.sh
   4. macadd_scripts.ps1
+  
  <b> 1. Hosts.csv: </b> So in this what i added were HOSTNAME,00:00:00:00. First we add hostname without fQDN, so just the hostname and after the comma we can add MAC_Address. We can add other hosts on each new line.
  
  <b> 2. Multi_host_deploy.sh Script: </b> In this we added the following script:
